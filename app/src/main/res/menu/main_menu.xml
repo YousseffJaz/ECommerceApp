@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_panier"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="Panier"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_commandes"
+        android:icon="@drawable/ic_history"
+        android:title="Commandes"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_deconnexion"
+        android:icon="@drawable/ic_logout"
+        android:title="Déconnexion"
+        app:showAsAction="ifRoom" />
+
+</menu>

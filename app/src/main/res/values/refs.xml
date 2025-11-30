@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="ic_search">ic_search</drawable>
+    <drawable name="ic_add_cart">ic_add_cart</drawable>
+</resources>

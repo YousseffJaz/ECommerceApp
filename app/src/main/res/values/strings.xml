@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Ecommerce App</string>
+    <string name="valider_commande">Valider la commande</string>
+    <string name="ajouter_au_panier">Ajouter au panier</string>
+    <string name="product_image">Image du produit</string>
+    <string name="add_to_cart">Ajouter au panier</string>
+    <string name="aucun_produit_disponible">Aucun produit disponible</string>
+    <string name="votre_panier_est_vide">Votre panier est vide</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit">Lorem ipsum, dolor sit amet consectetur adipiscing elit.</string>
+    <string name="ajouter_au_paniers">Ajouter au panier</string>
+    <string name="nom_du_produit">Nom du produit</string>
+    <string name="prix_0_00_dt">Prix : 0.00 DT</string>
+    <string name="cr_er_un_compte">Créer un compte</string>
+    <string name="inscription">Inscription</string>
+    <string name="nom">Nom</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="todo">TODO</string>
+    <string name="commande_01">Commande #01</string>
+    <string name="date_01_01_2024_10_30">Date: 01/01/2024 10:30</string>
+    <string name="total_0_00_dt">Total : 0.00 DT</string>
+    <string name="d_tails">Détails</string>
+    <string name="prix_0_00_dts">Prix : 0.00 DT</string>
+    <string name="nom_du_produits">Nom du produit</string>
+    <string name="aucune_commande_trouv_e">Aucune commande trouvée</string>
+    <string name="connexion">Connexion</string>
+    <string name="emails">Email</string>
+    <string name="mot_de_passes">Mot de passe</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="pas_de_compte_s_inscrire">Pas de compte ? S\'inscrire</string>
+    <string name="rechercher_un_produit">Rechercher un produit...</string>
+    <string name="_0_00_dt">0.00 DT</string>
+    <string name="total">TOTAL :</string>
+    <string name="description">Description</string>
+</resources>
