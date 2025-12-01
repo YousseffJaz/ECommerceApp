@@ -10,8 +10,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,11 +35,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Initialiser Firebase
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Initialiser les vues
         initViews();
 
         // Configurer les listeners
@@ -53,12 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        // Bouton d'inscription
         btnRegister.setOnClickListener(v -> registerUser());
 
-        // Lien vers la page de connexion
-        txtLogin.setOnClickListener(v -> {
-            finish(); // Retour à LoginActivity
+        txtLogin.setOnClickListener(v ->  {
+            finish();
         });
     }
 
@@ -69,53 +68,49 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Validation des champs
         if (TextUtils.isEmpty(nom)) {
-            editTextNom.setError("Nom requis");
+            editTextNom.setError("Nom requires");
             editTextNom.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(email)) {
-            editTextEmail.setError("Email requis");
+            editTextEmail.setError("Email requires");
             editTextEmail.requestFocus();
             return;
         }
 
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Email invalide");
+            editTextEmail.setError("Email invalid");
             editTextEmail.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            editTextPassword.setError("Mot de passe requis");
+            editTextPassword.setError("Mot de passe requires");
             editTextPassword.requestFocus();
             return;
         }
 
         if (password.length() < 6) {
-            editTextPassword.setError("Mot de passe doit contenir au moins 6 caractères");
+            editTextPassword.setError("Mot de passe  6 carapaces");
             editTextPassword.requestFocus();
             return;
         }
 
-        // Afficher le ProgressBar
         progressBar.setVisibility(View.VISIBLE);
         btnRegister.setEnabled(false);
 
-        // Créer le compte avec Firebase Authentication
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Récupérer l'ID de l'utilisateur
+                        assert mAuth.getCurrentUser() != null;
                         String userId = mAuth.getCurrentUser().getUid();
 
-                        // Créer un document utilisateur dans Firestore
                         Map<String, Object> user = new HashMap<>();
                         user.put("id", userId);
                         user.put("nom", nom);
                         user.put("email", email);
 
-                        // Ajouter l'utilisateur à Firestore
                         db.collection("utilisateurs").document(userId)
                                 .set(user)
                                 .addOnSuccessListener(aVoid -> {
@@ -143,26 +138,28 @@ public class RegisterActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         btnRegister.setEnabled(true);
 
-                        String errorMessage = "Erreur d'inscription";
-                        if (task.getException() != null) {
-                            errorMessage = task.getException().getMessage();
-
-                            // Messages d'erreur personnalisés
-                            if (errorMessage.contains("email address is already in use")) {
-                                errorMessage = "Cet email est déjà utilisé";
-                            } else if (errorMessage.contains("network error")) {
-                                errorMessage = "Erreur de connexion. Vérifiez votre internet";
-                            }
-                        }
+                        String errorMessage = getString(task);
 
                         Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    @NonNull
+    private static String getString(Task<AuthResult> task) {
+        String errorMessage = "Erreur d'inscription";
+        if (task.getException() != null) {
+            errorMessage = task.getException().getMessage();
+
+            // Messages d'erreur personnalisés
+            assert errorMessage != null;
+            if (errorMessage.contains("email address is already in use")) {
+                errorMessage = "Cet email est déjà utilisé";
+            } else if (errorMessage.contains("network error")) {
+                errorMessage = "Erreur de connexion. Vérifiez votre internet";
+            }
+        }
+        return errorMessage;
     }
+
 }

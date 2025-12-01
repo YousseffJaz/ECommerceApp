@@ -1,3 +1,5 @@
+
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
@@ -46,4 +48,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation (libs.glide.v505)
     annotationProcessor (libs.compiler.v505)
+    implementation(libs.material.v190)
+    implementation(libs.appcompat.v161)
+    implementation(libs.material)
+    implementation(libs.constraintlayout.v214)
 }

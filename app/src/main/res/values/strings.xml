@@ -32,4 +32,6 @@
     <string name="_0_00_dt">0.00 DT</string>
     <string name="total">TOTAL :</string>
     <string name="description">Description</string>
+    <string name="todos">TODO</string>
+    <string name="d_j_un_compte_se_connecter">Déjà un compte ? Se connecter</string>
 </resources>

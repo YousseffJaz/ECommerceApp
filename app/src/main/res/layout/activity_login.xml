@@ -16,6 +16,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:contentDescription="@string/todos"
             android:src="@drawable/ic_launcher_foreground"
             android:layout_marginBottom="32dp" />
 
@@ -33,8 +34,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxCornerRadius="8dp">
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextEmail"
@@ -51,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:boxCornerRadius="8dp"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
